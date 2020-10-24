@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="thread_title">Title:</label>
       <input
-        v-model="title"
+        v-model="form.title"
         type="text"
         id="thread_title"
         class="form-input"
@@ -14,7 +14,7 @@
     <div class="form-group">
       <label for="thread_content">Content:</label>
       <textarea
-        v-model="text"
+        v-model="form.text"
         id="thread_content"
         class="form-input"
         name="content"
@@ -26,7 +26,7 @@
     <div class="btn-group">
       <button @click.prevent="cancel" class="btn btn-ghost">Cancel</button>
       <button class="btn btn-blue" type="submit" name="Publish">
-        Publish
+        {{ isUpdate ? "Update" : "Publish" }}
       </button>
     </div>
   </form>
@@ -34,15 +34,32 @@
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    text: {
+      type: String,
+      default: ""
+    }
+  },
   data() {
     return {
-      title: "",
-      text: ""
+      form: {
+        title: this.title,
+        text: this.text
+      }
     };
+  },
+  computed: {
+    isUpdate() {
+      return !!this.title;
+    }
   },
   methods: {
     save() {
-      this.$emit("save", { title: this.title, text: this.text });
+      this.$emit("save", { title: this.form.title, text: this.form.text });
     },
     cancel() {
       this.$emit("cancel");

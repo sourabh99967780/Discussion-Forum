@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import CategoryListItem from "./CategoryListItem";
+import CategoryListItem from './CategoryListItem'
 export default {
   components: {
     CategoryListItem
@@ -21,7 +21,7 @@ export default {
       type: Array
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

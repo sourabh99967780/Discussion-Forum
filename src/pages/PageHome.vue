@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import CategoryList from "@/components/CategoryList";
+import { mapActions } from 'vuex'
+import CategoryList from '@/components/CategoryList'
 
 export default {
   components: {
@@ -15,8 +16,22 @@ export default {
 
   computed: {
     categories() {
-      return Object.values(this.$store.state.categories);
+      return Object.values(this.$store.state.categories)
     }
+  },
+
+  methods: {
+    ...mapActions(['fetchAllCategories', 'fetchForums'])
+  },
+
+  created() {
+    this.fetchAllCategories().then(categories => {
+      categories.forEach(category =>
+        this.fetchForums({
+          ids: Object.keys(category.forums)
+        })
+      )
+    })
   }
-};
+}
 </script>

@@ -14,7 +14,7 @@
     <!-- use .navbar-open to open nav -->
     <nav class="navbar">
       <ul>
-        <li class="navbar-user">
+        <li class="navbar-user" v-if="user">
           <router-link :to="{ name: 'Profile' }">
             <img class="avatar-small" :src="user.avatar" alt="" />
             <span>
@@ -67,14 +67,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      user: "authUser"
+      user: 'authUser'
     })
   }
-};
+}
 </script>
 
 <style></style>

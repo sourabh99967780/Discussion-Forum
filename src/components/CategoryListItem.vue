@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ForumList from "./ForumList";
+import ForumList from './ForumList'
 
 export default {
   components: {
@@ -28,11 +28,11 @@ export default {
   computed: {
     categoryForums() {
       return Object.values(this.$store.state.forums).filter(
-        forum => forum.categoryId === this.category[".key"]
-      );
+        forum => forum.categoryId === this.category['.key']
+      )
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

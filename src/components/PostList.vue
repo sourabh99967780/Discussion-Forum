@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PostListItem from "./PostListItem";
+import PostListItem from './PostListItem'
 export default {
   components: {
     PostListItem
@@ -17,7 +17,7 @@ export default {
       type: Array
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

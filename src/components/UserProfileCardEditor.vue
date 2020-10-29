@@ -94,29 +94,29 @@ export default {
   },
   computed: {
     userThreadsCount() {
-      return this.$store.getters.userThreadsCount(this.user[".key"]);
+      return this.$store.getters.userThreadsCount(this.user['.key'])
     },
 
     userPostsCount() {
-      return this.$store.getters.userPostsCount(this.user[".key"]);
+      return this.$store.getters.userPostsCount(this.user['.key'])
     }
   },
   data() {
     return {
       activeUser: { ...this.user }
-    };
+    }
   },
   methods: {
     save() {
-      this.$store.dispatch("updateUser", { ...this.activeUser });
-      this.$router.push({ name: "Profile" });
+      this.$store.dispatch('updateUser', { ...this.activeUser })
+      this.$router.push({ name: 'Profile' })
     },
 
     cancel() {
-      this.$router.push({ name: "Profile" });
+      this.$router.push({ name: 'Profile' })
     }
   }
-};
+}
 </script>
 
 <style></style>

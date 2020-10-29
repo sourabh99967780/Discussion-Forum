@@ -26,7 +26,7 @@
     <div class="btn-group">
       <button @click.prevent="cancel" class="btn btn-ghost">Cancel</button>
       <button class="btn btn-blue" type="submit" name="Publish">
-        {{ isUpdate ? "Update" : "Publish" }}
+        {{ isUpdate ? 'Update' : 'Publish' }}
       </button>
     </div>
   </form>
@@ -37,11 +37,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     text: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -50,22 +50,22 @@ export default {
         title: this.title,
         text: this.text
       }
-    };
+    }
   },
   computed: {
     isUpdate() {
-      return !!this.title;
+      return !!this.title
     }
   },
   methods: {
     save() {
-      this.$emit("save", { title: this.form.title, text: this.form.text });
+      this.$emit('save', { title: this.form.title, text: this.form.text })
     },
     cancel() {
-      this.$emit("cancel");
+      this.$emit('cancel')
     }
   }
-};
+}
 </script>
 
 <style></style>

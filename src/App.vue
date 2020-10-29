@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import TheNavbar from "@/components/TheNavbar.vue";
+import TheNavbar from '@/components/TheNavbar.vue'
 export default {
   components: {
     TheNavbar
   }
-};
+}
 </script>
 
 <style>
-@import "assets/css/style.css";
+@import 'assets/css/style.css';
 </style>

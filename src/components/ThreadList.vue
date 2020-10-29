@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ThreadListItem from "./ThreadListItem";
+import ThreadListItem from './ThreadListItem'
 export default {
   components: {
     ThreadListItem
@@ -22,5 +22,5 @@ export default {
       type: Array
     }
   }
-};
+}
 </script>

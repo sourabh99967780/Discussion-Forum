@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ForumListItem from "./ForumListItem";
+import ForumListItem from './ForumListItem'
 export default {
   components: {
     ForumListItem
@@ -21,7 +21,7 @@ export default {
       type: Array
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

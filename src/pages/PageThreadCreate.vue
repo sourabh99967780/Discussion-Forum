@@ -4,7 +4,7 @@
       Create new thread in <i>{{ forum.name }}</i>
     </h1>
 
-    <ThreadEditor @save="save" @cancel="cancel" />
+    <ThreadEditor ref="editor" @save="save" @cancel="cancel" />
   </div>
 </template>
 
@@ -26,14 +26,28 @@ export default {
     }
   },
 
+  data() {
+    return {
+      saved: false
+    }
+  },
+
   computed: {
     forum() {
-      return this.$store.state.forums[this.forumId]
+      return this.$store.state.forums.items[this.forumId]
+    },
+
+    hasUnsavedChanges() {
+      return (
+        (this.$refs.editor.form.title || this.$refs.editor.form.text) &&
+        !this.saved
+      )
     }
   },
 
   methods: {
-    ...mapActions(['createThread', 'fetchForum']),
+    ...mapActions('threads', ['createThread']),
+    ...mapActions('forums', ['fetchForum']),
 
     save({ title, text }) {
       this.createThread({
@@ -41,6 +55,7 @@ export default {
         title,
         text
       }).then(thread => {
+        this.saved = true
         this.$router.push({
           name: 'ThreadShow',
           params: { id: thread['.key'] }
@@ -56,6 +71,21 @@ export default {
     this.fetchForum({ id: this.forumId }).then(() => {
       this.asyncDataStatus_fetched()
     })
+  },
+
+  beforeRouteLeave(to, from, next) {
+    if (this.hasUnsavedChanges) {
+      const confirmed = window.confirm(
+        'Are you sure you want to leave? Unsaved changes will be lost.'
+      )
+      if (confirmed) {
+        next()
+      } else {
+        next(false)
+      }
+    } else {
+      next()
+    }
   }
 }
 </script>

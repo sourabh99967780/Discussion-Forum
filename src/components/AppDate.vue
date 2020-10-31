@@ -1,5 +1,8 @@
 <template>
-  <span :title="timestamp | humanFriendlyDate">{{
+  <span v-if="formatDate">
+    {{ timestamp | exactDate }}
+  </span>
+  <span v-else :title="timestamp | humanFriendlyDate">{{
     timestamp | diffForHumans
   }}</span>
 </template>
@@ -11,6 +14,10 @@ export default {
     timestamp: {
       required: true,
       type: Number
+    },
+
+    formatDate: {
+      type: String
     }
   },
 
@@ -21,6 +28,10 @@ export default {
 
     diffForHumans(date) {
       return moment.unix(date).fromNow()
+    },
+
+    exactDate(date) {
+      return moment.unix(date).format('MMM Do YY')
     }
   }
 }

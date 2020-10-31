@@ -117,7 +117,7 @@ figcaption {
 }
 
 .forum-list .forum-listing .forum-details ul.subforums::before {
-  content: "⌙";
+  content: '⌙';
   margin-right: 5px;
 }
 
@@ -130,8 +130,8 @@ figcaption {
   .forum-details
   ul.subforums.subforums
   li:not(:last-of-type)::after {
-  content: "\f111";
-  font-family: "FontAwesome";
+  content: '\f111';
+  font-family: 'FontAwesome';
   font-size: 4px;
   position: relative;
   top: -3px;
@@ -489,7 +489,7 @@ figcaption {
   left: -25px;
   font-size: 42px;
   font-family: FontAwesome;
-  content: "\f10e";
+  content: '\f10e';
   color: #263959;
 }
 
@@ -541,7 +541,7 @@ figcaption {
   left: -20px;
   font-size: 42px;
   font-family: FontAwesome;
-  content: "\f10e";
+  content: '\f10e';
   color: #263959;
 }
 
@@ -600,7 +600,7 @@ figcaption {
   left: -25px;
   font-size: 42px;
   font-family: FontAwesome;
-  content: "\f10e";
+  content: '\f10e';
   color: #263959;
 }
 
@@ -751,7 +751,7 @@ textarea#user_bio {
 
 span.offline::before {
   font-family: FontAwesome;
-  content: "\f1db";
+  content: '\f1db';
   font-size: 14px;
   margin-right: 5px;
 }
@@ -762,7 +762,7 @@ span.online {
 
 span.online::before {
   font-family: FontAwesome;
-  content: "\f2be";
+  content: '\f2be';
   font-size: 14px;
   margin-right: 5px;
 }
@@ -1095,7 +1095,7 @@ ul {
 .navbar ul {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   height: 100%;
 }
 
@@ -1449,7 +1449,7 @@ header > a.logo {
   border-bottom: solid 8px #263959;
   border-left: solid 8px transparent;
   border-right: solid 8px transparent;
-  content: "";
+  content: '';
   display: inline-block;
   left: 52px;
   position: absolute;
@@ -1578,7 +1578,7 @@ textarea.form-input {
   }
 }
 
-input[type="submit"],
+input[type='submit'],
 button {
   -webkit-appearance: none;
   font-size: 18px;
@@ -1873,7 +1873,7 @@ button {
   border: none;
   color: #fff;
   cursor: pointer;
-  font-family: "Open sans", sans-serif;
+  font-family: 'Open sans', sans-serif;
   font-size: 18px;
   padding: 0 25px;
   right: 4px;
@@ -2173,7 +2173,7 @@ ul.breadcrumbs li {
 }
 
 ul.breadcrumbs li:not(:last-of-type)::after {
-  content: "\f105";
+  content: '\f105';
   font-family: FontAwesome;
   margin: 0px 4px;
   opacity: 0.6;
@@ -2289,7 +2289,7 @@ ul.breadcrumbs li a:hover {
   }
 
   #moderation ul.toolbar li.close-toolbar .fa::before {
-    content: "\f107";
+    content: '\f107';
     font-family: FontAwesome;
   }
 }
@@ -2337,7 +2337,7 @@ ul.breadcrumbs li a:hover {
   }
 
   #moderation ul.toolbar-collapsed li.open-toolbar a::before {
-    content: "\f106";
+    content: '\f106';
     font-family: FontAwesome;
     font-size: 30px;
   }
@@ -2434,7 +2434,7 @@ a.close:hover {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #545454;
   font-size: 16px;
   line-height: 1.5;

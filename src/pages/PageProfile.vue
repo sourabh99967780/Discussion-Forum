@@ -1,15 +1,21 @@
 <template>
-  <div class="flex-grid">
-    <UserProfileCard v-if="!edit" :user="user" />
-    <UserProfileCardEditor v-else :user="user" />
-    <div class="col-7 push-top">
-      <div class="profile-header">
-        <span class="text-lead"> {{ user.username }}'s recent activity </span>
-        <a href="#">See only started threads?</a>
-      </div>
+  <div>
+    <div v-if="user" class="flex-grid">
+      <UserProfileCard v-if="!edit" :user="user" />
+      <UserProfileCardEditor v-else :user="user" />
 
-      <hr />
-      <PostList :posts="userPosts" />
+      <div class="col-7 push-top">
+        <div class="profile-header">
+          <span class="text-lead"> {{ user.username }}'s recent activity </span>
+          <a href="#">See only started threads?</a>
+        </div>
+
+        <hr />
+        <PostList :posts="userPosts" />
+      </div>
+    </div>
+    <div v-else class="flex-grid">
+      You need to sign in or register to view this Page. :)
     </div>
   </div>
 </template>
@@ -19,36 +25,37 @@ import PostList from '@/components/PostList'
 import UserProfileCard from '@/components/UserProfileCard'
 import UserProfileCardEditor from '@/components/UserProfileCardEditor'
 import { mapGetters } from 'vuex'
-
+import asyncDataStatus from '@/mixins/asyncDataStatus'
 export default {
   components: {
     PostList,
     UserProfileCard,
     UserProfileCardEditor
   },
-
+  mixins: [asyncDataStatus],
   props: {
     edit: {
-      default: false,
-      type: Boolean
+      type: Boolean,
+      default: false
     }
   },
-
   computed: {
     ...mapGetters({
-      user: 'authUser'
+      user: 'auth/authUser'
     }),
-
     userPosts() {
-      if (this.user.posts) {
-        return Object.values(this.$store.state.posts).filter(
-          post => post.userId === this.user['.key']
-        )
-      }
-      return []
+      return this.$store.getters['users/userPosts'](this.user['.key'])
     }
+  },
+  created() {
+    if (this.user.posts) {
+      this.$store
+        .dispatch('posts/fetchPosts', { ids: this.user.posts })
+        .then(() => this.asyncDataStatus_fetched())
+    }
+    this.$emit('ready')
   }
 }
 </script>
 
-<style></style>
+<style scoped></style>

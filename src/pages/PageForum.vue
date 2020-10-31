@@ -32,31 +32,28 @@ export default {
   components: {
     ThreadList
   },
-
   mixins: [asyncDataStatus],
-
   props: {
     id: {
       required: true,
       type: String
     }
   },
-
   computed: {
     forum() {
-      return this.$store.state.forums[this.id]
+      return this.$store.state.forums.items[this.id]
     },
     threads() {
-      return Object.values(this.$store.state.threads).filter(
+      return Object.values(this.$store.state.threads.items).filter(
         thread => thread.forumId === this.id
       )
     }
   },
-
   methods: {
-    ...mapActions(['fetchForum', 'fetchThreads', 'fetchUser'])
+    ...mapActions('forums', ['fetchForum']),
+    ...mapActions('threads', ['fetchThreads']),
+    ...mapActions('users', ['fetchUser'])
   },
-
   created() {
     this.fetchForum({ id: this.id })
       .then(forum => this.fetchThreads({ ids: forum.threads }))

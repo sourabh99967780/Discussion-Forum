@@ -30,7 +30,10 @@
     </div>
 
     <p class="text-xsmall text-faded text-center">
-      Member since june 2003, last visited 4 hours ago
+      Member since
+      <AppDate :timestamp="user.registeredAt" :formatDate="'MMM Do YY'" />, last
+      visited
+      {{ getLastSignInTime }}
     </p>
 
     <div class="text-center">
@@ -43,7 +46,11 @@
 </template>
 
 <script>
+import AppDate from '@/components/AppDate'
 export default {
+  components: {
+    AppDate
+  },
   props: {
     user: {
       required: true,
@@ -53,11 +60,15 @@ export default {
 
   computed: {
     userThreadsCount() {
-      return this.$store.getters.userThreadsCount(this.user['.key'])
+      return this.$store.getters['users/userThreadsCount'](this.user['.key'])
     },
 
     userPostsCount() {
-      return this.$store.getters.userPostsCount(this.user['.key'])
+      return this.$store.getters['users/userPostsCount'](this.user['.key'])
+    },
+
+    getLastSignInTime() {
+      return this.$store.getters['auth/lastSignIn']
     }
   }
 }
